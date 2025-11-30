@@ -8,7 +8,7 @@ console.log('aaa')
 
 //シーンを作る
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
+scene.background = new THREE.Color(0xadadad);
 
 //カメラを作る
 const camera = new THREE.PerspectiveCamera(
@@ -81,7 +81,7 @@ const glbPath1 = "./models/table.glb"
     model1.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
     model1.rotation.set(0, Math.PI / 2, 0); // モデルの回転を調整
     model1.position.set(0, -0.4, 0);//モデルの位置を調整
-    model1.receiveShadow = true;
+    model1.receiveShadow = true;//影を付ける
     
    
     scene.add(model1);
@@ -103,19 +103,22 @@ const fill = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
 scene.add(fill);
 
   // 点光源を作成
-const light1 = new THREE.PointLight(0xFFFFFF, 5, 10, 1.0);
+
+  // スポットライト光源を作成
+// new THREE.SpotLight(色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
+const light1 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
 scene.add(light1);
-light1.position.set(0, 2, 5);
+light1.position.set(0, 3, 4.8);
 light1.castShadow = true;
 
-const light2 = new THREE.PointLight(0xFFFFFF, 8, 5, 1.0);
+const light2 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
 scene.add(light2);
-light2.position.set(-2.7, 2, 2.8);
+light2.position.set(-3.1, 1, 2.8);
 light2.castShadow = true;
 
-const light3 = new THREE.PointLight(0xFFFFFF, 8, 5, 1.0);
+const light3 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
 scene.add(light3);
-light3.position.set(2.7, 2, 2.8);
+light3.position.set(3.1, 1, 2.8);
 light3.castShadow = true;
 
 //fps設定

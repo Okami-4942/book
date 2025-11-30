@@ -1,40 +1,55 @@
+//インポートから始まるのは全部ここ
 import * as THREE from "three";
-// import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-// import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 
 console.log('aaa')
 
+//シーンを作る
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);//シーンを作る
+scene.background = new THREE.Color(0xffffff);
 
+//カメラを作る
 const camera = new THREE.PerspectiveCamera(
   65, window.innerWidth / window.innerHeight, 0.1, 1000
 );
-camera.position.set(0,3,0);//カメラを作る
+camera.position.set(0,3,0);
 
+//レンダラー(プロジェクターとスクリーン)
 const renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: "high-performance" });
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);//レンダラー(プロジェクターとスクリーン)
+document.body.appendChild(renderer.domElement);
 
-renderer.shadowMap.enabled = true; //影をつける
+//レンダラーを整える
+renderer.outputColorSpace = THREE.SRGBColorSpace;  // three r152+ の場合
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.physicallyCorrectLights = true;          // 物理ベースライティング
+
+
+ //影をつける
+renderer.shadowMap.enabled = true; 
 
 //床の作成
-const floor_geometry = new THREE.PlaneGeometry(2, 2);
+const floor_geometry = new THREE.PlaneGeometry(20, 20);
 const floor_material = new THREE.MeshStandardMaterial({
-  color: 0xffffff,
+  color: 0x7d7d7d,
   roughness: 1,
   metalness: 0
 });
 const plate = new THREE.Mesh(floor_geometry, floor_material);
 plate.rotation.x = -Math.PI / 2;
-plate.position.y = 0.03; // ← これが“段差”
+plate.position.y = 0.04; // ← これが“段差”
 scene.add(plate);
 
 //床に影を落す
 plate.receiveShadow = true;
 scene.add(plate);
 
-//クロスヘアを設置
+//クロスヘア
+
+ //1.クロスヘアを設置
 const size = 0.02;  // crosshair の長さを調整
 const crossfair_material = new THREE.LineBasicMaterial({ color: 0xffffff });
 
@@ -45,16 +60,16 @@ const vertices = new Float32Array([
 ]);
 crosshairGeometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
-// 2. LineSegments で十字を描く
+ // 2. LineSegments で十字を描く
 const crosshair = new THREE.LineSegments(crosshairGeometry, crossfair_material);
 
-// 3. カメラに add して、シーンにも camera を add
+ // 3. カメラに add して、シーンにも camera を add
 camera.add(crosshair);
 
 // ---------- GLB の読み込み ----------
 const loader = new GLTFLoader()
 
-const glbPath1 = "./model/table.glb"
+const glbPath1 = "./models/table.glb"
 
 //tableのオブジェクトを読み込み
   loader.load(
@@ -63,9 +78,9 @@ const glbPath1 = "./model/table.glb"
     const model1 = gltf.scene; //<-ここの変数を増やす
     
     // モデルのサイズや位置を調整
-    model1.scale.set(0.5, 0.5, 0.5); //モデルの大きさを調整
+    model1.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
     model1.rotation.set(0, Math.PI / 2, 0); // モデルの回転を調整
-    model1.position.set(0, 0.1, 0);//モデルの位置を調整
+    model1.position.set(0, -0.4, 0);//モデルの位置を調整
     model1.receiveShadow = true;
     
    
@@ -73,11 +88,39 @@ const glbPath1 = "./model/table.glb"
     console.log("モデル1が正常に読み込まれました。");
   })
 
-//環境光
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 色、強度
+//光  
+
+  //環境光
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1); // 色、強度
   scene.add(ambientLight);
 
-// カメラをマウスで操作できるようにする
+  //ライトの調整
+  const sun = new THREE.DirectionalLight(0xffffff, 3.0);
+sun.position.set(5, 10, 7.5);
+scene.add(sun);
+
+const fill = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
+scene.add(fill);
+
+  // 点光源を作成
+const light1 = new THREE.PointLight(0xFFFFFF, 5, 10, 1.0);
+scene.add(light1);
+light1.position.set(0, 2, 5);
+light1.castShadow = true;
+
+const light2 = new THREE.PointLight(0xFFFFFF, 8, 5, 1.0);
+scene.add(light2);
+light2.position.set(-2.7, 2, 2.8);
+light2.castShadow = true;
+
+const light3 = new THREE.PointLight(0xFFFFFF, 8, 5, 1.0);
+scene.add(light3);
+light3.position.set(2.7, 2, 2.8);
+light3.castShadow = true;
+
+//fps設定
+
+ // カメラをマウスで操作できるようにする
 const controls = new PointerLockControls(camera, document.body);
 scene.add(controls.getObject());
 
@@ -85,23 +128,23 @@ document.addEventListener("click", () =>{
   controls.lock()
 })
 
-// キーボードのキーが押されたかチェックする
+ // キーボードのキーが押されたかチェックする
 const keys = {};
 document.addEventListener('keydown', (e) => keys[e.code] = true);
 document.addEventListener('keyup', (e) => keys[e.code] = false);
 
-// 動く方向と速さのデータ
+ // 動く方向と速さのデータ
 const direction = new THREE.Vector3();
 const velocity = new THREE.Vector3();
 
-// 毎フレーム（60回/秒）動かす関数
+ // 毎フレーム（60回/秒）動かす関数
 function animate() {
  requestAnimationFrame(animate);
 
  if (controls.isLocked) {
   direction.set(0, 0, 0); // 方向を初期化
 
- // 押されたキーに応じて方向を設定
+  // 押されたキーに応じて方向を設定
  if (keys['KeyS']) direction.z -= 1;
  if (keys['KeyW']) direction.z += 1;
  if (keys['KeyA']) direction.x -= 1;
@@ -120,10 +163,7 @@ function animate() {
 
 }
 
-// function animate(){
-//     requestAnimationFrame(animate)
-//     renderer.render(scene, camera)
-// }
+
 
 animate()
 

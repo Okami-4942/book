@@ -14,7 +14,7 @@ scene.background = new THREE.Color(0xadadad);
 const camera = new THREE.PerspectiveCamera(
   65, window.innerWidth / window.innerHeight, 0.1, 1000
 );
-camera.position.set(0,3,0);
+camera.position.set(0,2.3,0);
 
 //レンダラー(プロジェクターとスクリーン)
 const renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: "high-performance" });
@@ -70,6 +70,9 @@ camera.add(crosshair);
 const loader = new GLTFLoader()
 
 const glbPath1 = "./models/table.glb"
+const glbPath2 = "./models/yuutu.glb"
+const glbPath3 = "./models/puranetes.glb"
+const glbPath4 = "./models/setuna.glb" 
 
 //tableのオブジェクトを読み込み
   loader.load(
@@ -87,6 +90,57 @@ const glbPath1 = "./models/table.glb"
     scene.add(model1);
     console.log("モデル1が正常に読み込まれました。");
   })
+
+  //メアリー・スーの憂鬱のオブジェクトを読み込み
+  loader.load(
+    glbPath2,
+    function (gltf) {
+      const model2 = gltf.scene; //<-ここの変数を増やす
+    
+      // モデルのサイズや位置を調整
+      model2.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
+      model2.rotation.set(Math.PI,0, Math.PI); // モデルの回転を調整
+      model2.position.set(0, 1.8,4.7);//モデルの位置を調整
+      model2.receiveShadow = true;//影を付ける
+    
+   
+      scene.add(model2);
+      console.log("モデル2が正常に読み込まれました。");
+    })
+
+     //プラネテスのオブジェクトを読み込み
+  loader.load(
+    glbPath3,
+    function (gltf) {
+      const model3 = gltf.scene; //<-ここの変数を増やす
+    
+      // モデルのサイズや位置を調整
+      model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
+      model3.rotation.set(Math.PI,-Math.PI/1.7, Math.PI); // モデルの回転を調整
+      model3.position.set(-2.92, 1.8,2.8);//モデルの位置を調整
+      model3.receiveShadow = true;//影を付ける
+    
+   
+      scene.add(model3);
+      console.log("モデル3が正常に読み込まれました。");
+    })
+
+    //陽だまりのセツナのオブジェクトを読み込み
+  loader.load(
+    glbPath3,
+    function (gltf) {
+      const model4 = gltf.scene; //<-ここの変数を増やす
+    
+      // モデルのサイズや位置を調整
+      model4.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
+      model4.rotation.set(Math.PI,Math.PI/1.7, Math.PI); // モデルの回転を調整
+      model4.position.set(2.92, 1.8,2.8);//モデルの位置を調整
+      model4.receiveShadow = true;//影を付ける
+    
+   
+      scene.add(model4);
+      console.log("モデル4が正常に読み込まれました。");
+    })
 
 //光  
 
@@ -106,19 +160,19 @@ scene.add(fill);
 
   // スポットライト光源を作成
 // new THREE.SpotLight(色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
-const light1 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
+const light1 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
 scene.add(light1);
 light1.position.set(0, 3, 4.8);
 light1.castShadow = true;
 
-const light2 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
+const light2 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
 scene.add(light2);
-light2.position.set(-3.1, 1, 2.8);
+light2.position.set(-3.1, 3, 2.8);
 light2.castShadow = true;
 
-const light3 = new THREE.SpotLight(0xeaf4fc, 100, 2, Math.PI, 4, 0.5);
+const light3 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
 scene.add(light3);
-light3.position.set(3.1, 1, 2.8);
+light3.position.set(3.1, 3, 2.8);
 light3.castShadow = true;
 
 //fps設定
@@ -155,7 +209,7 @@ function animate() {
 
  direction.normalize(); // 斜めでも速さを一定に
 
- velocity.copy(direction).multiplyScalar(0.1); // 移動の速さを調整
+ velocity.copy(direction).multiplyScalar(0.04); // 移動の速さを調整
 
  // 実際にカメラを動かす
  controls.moveRight(velocity.x);

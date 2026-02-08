@@ -73,6 +73,7 @@ const glbPath1 = "./models/table.glb"
 const glbPath2 = "./models/yuutu.glb"
 const glbPath3 = "./models/puranetes.glb"
 const glbPath4 = "./models/setuna.glb" 
+const glbPath5 = "./models/table.glb"
 
 //tableのオブジェクトを読み込み
   loader.load(
@@ -82,13 +83,30 @@ const glbPath4 = "./models/setuna.glb"
     
     // モデルのサイズや位置を調整
     model1.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
-    model1.rotation.set(0, Math.PI / 2, 0); // モデルの回転を調整
-    model1.position.set(0, -0.4, 0);//モデルの位置を調整
+    model1.rotation.set(0, Math.PI/2, 0); // モデルの回転を調整
+    model1.position.set(0, -0.4, 0.2);//モデルの位置を調整
     model1.receiveShadow = true;//影を付ける
     
    
     scene.add(model1);
     console.log("モデル1が正常に読み込まれました。");
+  })
+
+  //ふたつめtableのオブジェクトを読み込み
+  loader.load(
+  glbPath1,
+  function (gltf) {
+    const model5 = gltf.scene; //<-ここの変数を増やす
+    
+    // モデルのサイズや位置を調整
+    model5.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
+    model5.rotation.set(0,-Math.PI/2,0); // モデルの回転を調整
+    model5.position.set(0, -0.4,-0.2);//モデルの位置を調整
+    model5.receiveShadow = true;//影を付ける
+    
+   
+    scene.add(model5);
+    console.log("モデル5が正常に読み込まれました。");
   })
 
   //メアリー・スーの憂鬱のオブジェクトを読み込み

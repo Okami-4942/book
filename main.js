@@ -152,8 +152,8 @@ const glbPath7 = "./models/tuki.glb"
     
       // モデルのサイズや位置を調整
       model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
-      model3.rotation.set(Math.PI,Math.PI/1.7, Math.PI); // モデルの回転を調整
-      model3.position.set(-3.0, 1.8,2.8);//モデルの位置を調整
+      model3.rotation.set(Math.PI,Math.PI/2.8, Math.PI); // モデルの回転を調整
+      model3.position.set(-3.7,1.8,1.2);//モデルの位置を調整
       model3.receiveShadow = true;//影を付ける
     
    

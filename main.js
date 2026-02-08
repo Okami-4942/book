@@ -46,7 +46,7 @@ const floor_material = new THREE.MeshStandardMaterial({
 });
 
 const plate = new THREE.Mesh(floor_geometry, floor_material);
-plate.position.y = 0.04; // 厚みの半分だけ上に
+plate.position.y =0.009; // 厚みの半分だけ上に
 scene.add(plate);
 
 //浮島の作成
@@ -105,6 +105,13 @@ const glbPath7 = "./models/tuki.glb"
     model1.position.set(0, -0.4, 0.2);//モデルの位置を調整
     model1.receiveShadow = true;//影を付ける
     
+        // 子要素にも影の設定を適用
+    model1.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
    
     scene.add(model1);
     console.log("モデル1が正常に読み込まれました。");
@@ -122,6 +129,13 @@ const glbPath7 = "./models/tuki.glb"
     model5.position.set(0, -0.4,-0.2);//モデルの位置を調整
     model5.receiveShadow = true;//影を付ける
     
+        // 子要素にも影の設定を適用
+    model5.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
    
     scene.add(model5);
     console.log("モデル5が正常に読み込まれました。");
@@ -139,6 +153,13 @@ const glbPath7 = "./models/tuki.glb"
       model2.position.set(0, 1.8,4.9);//モデルの位置を調整
       model2.receiveShadow = true;//影を付ける
     
+            // 子要素にも影の設定を適用
+      model2.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
    
       scene.add(model2);
       console.log("モデル2が正常に読み込まれました。");
@@ -153,9 +174,16 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model3.rotation.set(Math.PI,Math.PI/2.8, Math.PI); // モデルの回転を調整
-      model3.position.set(-3.7,1.8,1.2);//モデルの位置を調整
+      model3.position.set(-3.65,1.8,1.4);//モデルの位置を調整
       model3.receiveShadow = true;//影を付ける
     
+            // 子要素にも影の設定を適用
+      model3.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
    
       scene.add(model3);
       console.log("モデル3が正常に読み込まれました。");
@@ -169,10 +197,17 @@ const glbPath7 = "./models/tuki.glb"
     
       // モデルのサイズや位置を調整
       model4.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
-      model4.rotation.set(Math.PI,-Math.PI/1.7, Math.PI); // モデルの回転を調整
-      model4.position.set(3.0, 1.8,2.8);//モデルの位置を調整
+      model4.rotation.set(Math.PI,-Math.PI/2.5, Math.PI); // モデルの回転を調整
+      model4.position.set(2.7, 1.8,3.6);//モデルの位置を調整
       model4.receiveShadow = true;//影を付ける
     
+            // 子要素にも影の設定を適用
+      model4.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
    
       scene.add(model4);
       console.log("モデル4が正常に読み込まれました。");
@@ -187,9 +222,16 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model6.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model6.rotation.set(Math.PI,Math.PI/1.4, Math.PI); // モデルの回転を調整
-      model6.position.set(-2.5, 1.8,-3.7);//モデルの位置を調整
+      model6.position.set(-1.2, 1.83,-5.3);//モデルの位置を調整
       model6.receiveShadow = true;//影を付ける
     
+         // 子要素にも影の設定を適用
+      model6.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
    
       scene.add(model6);
       console.log("モデル6が正常に読み込まれました。");
@@ -204,13 +246,22 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model7.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model7.rotation.set(Math.PI,-Math.PI/1.4, Math.PI); // モデルの回転を調整
-      model7.position.set(2.5,1.8,-3.7);//モデルの位置を調整
+      model7.position.set(2,1.85,-4.3);//モデルの位置を調整
       model7.receiveShadow = true;//影を付ける
     
+           // 子要素にも影の設定を適用
+      model7.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
    
       scene.add(model7);
       console.log("モデル7が正常に読み込まれました。");
     })
+
+     
 
 //光  
 
@@ -221,6 +272,7 @@ const glbPath7 = "./models/tuki.glb"
   //ライトの調整
   const sun = new THREE.DirectionalLight(0xffffff, 3.0);
 sun.position.set(5, 10, 7.5);
+sun.castShadow = true;//影を落とす
 scene.add(sun);
 
 const fill = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);

@@ -136,7 +136,7 @@ const glbPath7 = "./models/tuki.glb"
     
       // モデルのサイズや位置を調整
       model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
-      model3.rotation.set(Math.PI,-Math.PI/1.7, Math.PI); // モデルの回転を調整
+      model3.rotation.set(Math.PI,Math.PI/1.7, Math.PI); // モデルの回転を調整
       model3.position.set(-3.0, 1.8,2.8);//モデルの位置を調整
       model3.receiveShadow = true;//影を付ける
     
@@ -153,7 +153,7 @@ const glbPath7 = "./models/tuki.glb"
     
       // モデルのサイズや位置を調整
       model4.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
-      model4.rotation.set(Math.PI,Math.PI/1.7, Math.PI); // モデルの回転を調整
+      model4.rotation.set(Math.PI,-Math.PI/1.7, Math.PI); // モデルの回転を調整
       model4.position.set(3.0, 1.8,2.8);//モデルの位置を調整
       model4.receiveShadow = true;//影を付ける
     
@@ -214,29 +214,29 @@ scene.add(fill);
 
   // スポットライト光源を作成
 // new THREE.SpotLight(色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
-const light1 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+const light1 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light1);
 light1.position.set(0, 3, 4.8);
 light1.castShadow = true;
 
-const light2 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+const light2 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light2);
 light2.position.set(-3.1, 3, 2.8);
 light2.castShadow = true;
 
-const light3 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+const light3 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light3);
 light3.position.set(3.1, 3, 2.8);
 light3.castShadow = true;
 
 // light4は冊数的に削除
 
-const light5 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+const light5 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light5);
 light5.position.set(-2.5,3,-4.2);
 light5.castShadow = true;
 
-const light6 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+const light6 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light6);
 light6.position.set(2.5,3,-4.2);
 light6.castShadow = true;

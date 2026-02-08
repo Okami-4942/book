@@ -74,6 +74,8 @@ const glbPath2 = "./models/yuutu.glb"
 const glbPath3 = "./models/puranetes.glb"
 const glbPath4 = "./models/setuna.glb" 
 const glbPath5 = "./models/table.glb"
+const glbPath6 = "./models/dec.glb"
+const glbPath7 = "./models/tuki.glb"
 
 //tableのオブジェクトを読み込み
   loader.load(
@@ -118,7 +120,7 @@ const glbPath5 = "./models/table.glb"
       // モデルのサイズや位置を調整
       model2.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model2.rotation.set(Math.PI,0, Math.PI); // モデルの回転を調整
-      model2.position.set(0, 1.8,4.7);//モデルの位置を調整
+      model2.position.set(0, 1.8,4.9);//モデルの位置を調整
       model2.receiveShadow = true;//影を付ける
     
    
@@ -135,7 +137,7 @@ const glbPath5 = "./models/table.glb"
       // モデルのサイズや位置を調整
       model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model3.rotation.set(Math.PI,-Math.PI/1.7, Math.PI); // モデルの回転を調整
-      model3.position.set(-2.92, 1.8,2.8);//モデルの位置を調整
+      model3.position.set(-3.0, 1.8,2.8);//モデルの位置を調整
       model3.receiveShadow = true;//影を付ける
     
    
@@ -145,19 +147,53 @@ const glbPath5 = "./models/table.glb"
 
     //陽だまりのセツナのオブジェクトを読み込み
   loader.load(
-    glbPath3,
+    glbPath4,
     function (gltf) {
       const model4 = gltf.scene; //<-ここの変数を増やす
     
       // モデルのサイズや位置を調整
       model4.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model4.rotation.set(Math.PI,Math.PI/1.7, Math.PI); // モデルの回転を調整
-      model4.position.set(2.92, 1.8,2.8);//モデルの位置を調整
+      model4.position.set(3.0, 1.8,2.8);//モデルの位置を調整
       model4.receiveShadow = true;//影を付ける
     
    
       scene.add(model4);
       console.log("モデル4が正常に読み込まれました。");
+    })
+
+     //Dec.のオブジェクトを読み込み
+  loader.load(
+    glbPath6,
+    function (gltf) {
+      const model6 = gltf.scene; //<-ここの変数を増やす
+    
+      // モデルのサイズや位置を調整
+      model6.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
+      model6.rotation.set(Math.PI,Math.PI/1.4, Math.PI); // モデルの回転を調整
+      model6.position.set(-2.5, 1.8,-3.7);//モデルの位置を調整
+      model6.receiveShadow = true;//影を付ける
+    
+   
+      scene.add(model6);
+      console.log("モデル6が正常に読み込まれました。");
+    })
+
+     //ツキアカリのオブジェクトを読み込み
+  loader.load(
+    glbPath7,
+    function (gltf) {
+      const model7 = gltf.scene; //<-ここの変数を増やす
+    
+      // モデルのサイズや位置を調整
+      model7.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
+      model7.rotation.set(Math.PI,-Math.PI/1.4, Math.PI); // モデルの回転を調整
+      model7.position.set(2.5,1.8,-3.7);//モデルの位置を調整
+      model7.receiveShadow = true;//影を付ける
+    
+   
+      scene.add(model7);
+      console.log("モデル7が正常に読み込まれました。");
     })
 
 //光  
@@ -192,6 +228,18 @@ const light3 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
 scene.add(light3);
 light3.position.set(3.1, 3, 2.8);
 light3.castShadow = true;
+
+// light4は冊数的に削除
+
+const light5 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+scene.add(light5);
+light5.position.set(-2.5,3,-4.2);
+light5.castShadow = true;
+
+const light6 = new THREE.SpotLight(0Xffe9b3, 80, 2, Math.PI, 4, 0.5);
+scene.add(light6);
+light6.position.set(2.5,3,-4.2);
+light6.castShadow = true;
 
 //fps設定
 

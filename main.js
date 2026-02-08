@@ -14,7 +14,7 @@ scene.background = new THREE.Color(0xadadad);
 const camera = new THREE.PerspectiveCamera(
   65, window.innerWidth / window.innerHeight, 0.1, 1000
 );
-camera.position.set(0,2.3,0);
+camera.position.set(0,2.6,0);
 
 //レンダラー(プロジェクターとスクリーン)
 const renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: "high-performance" });
@@ -120,7 +120,7 @@ const glbPath7 = "./models/tuki.glb"
     // モデルのサイズや位置を調整
     model1.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
     model1.rotation.set(0, Math.PI/2, 0); // モデルの回転を調整
-    model1.position.set(0, -0.4, 0.2);//モデルの位置を調整
+    model1.position.set(0, -0.4, 0.1);//モデルの位置を調整
     model1.receiveShadow = true;//影を付ける
     
         // 子要素にも影の設定を適用
@@ -144,7 +144,7 @@ const glbPath7 = "./models/tuki.glb"
     // モデルのサイズや位置を調整
     model5.scale.set(0.7, 0.7, 0.7); //モデルの大きさを調整
     model5.rotation.set(0,-Math.PI/2,0); // モデルの回転を調整
-    model5.position.set(0, -0.4,-0.2);//モデルの位置を調整
+    model5.position.set(0, -0.4,-0.1);//モデルの位置を調整
     model5.receiveShadow = true;//影を付ける
     
         // 子要素にも影の設定を適用
@@ -168,7 +168,7 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model2.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model2.rotation.set(Math.PI,0, Math.PI); // モデルの回転を調整
-      model2.position.set(0, 1.8,4.95);//モデルの位置を調整
+      model2.position.set(0, 1.8,4.85);//モデルの位置を調整
       model2.receiveShadow = true;//影を付ける
     
             // 子要素にも影の設定を適用
@@ -192,7 +192,7 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model3.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model3.rotation.set(Math.PI,Math.PI/2.8, Math.PI); // モデルの回転を調整
-      model3.position.set(-3.65,1.8,1.4);//モデルの位置を調整
+      model3.position.set(-3.65,1.8,1.3);//モデルの位置を調整
       model3.receiveShadow = true;//影を付ける
     
             // 子要素にも影の設定を適用
@@ -216,7 +216,7 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model4.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model4.rotation.set(Math.PI,-Math.PI/2.5, Math.PI); // モデルの回転を調整
-      model4.position.set(2.7, 1.8,3.6);//モデルの位置を調整
+      model4.position.set(2.7, 1.8,3.5);//モデルの位置を調整
       model4.receiveShadow = true;//影を付ける
     
             // 子要素にも影の設定を適用
@@ -240,7 +240,7 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model6.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model6.rotation.set(Math.PI,Math.PI/1.4, Math.PI); // モデルの回転を調整
-      model6.position.set(-1.2, 1.83,-5.3);//モデルの位置を調整
+      model6.position.set(-1.2, 1.83,-5.2);//モデルの位置を調整
       model6.receiveShadow = true;//影を付ける
     
          // 子要素にも影の設定を適用
@@ -264,7 +264,7 @@ const glbPath7 = "./models/tuki.glb"
       // モデルのサイズや位置を調整
       model7.scale.set(0.01, 0.01, 0.01); //モデルの大きさを調整
       model7.rotation.set(Math.PI,-Math.PI/1.4, Math.PI); // モデルの回転を調整
-      model7.position.set(2,1.85,-4.3);//モデルの位置を調整
+      model7.position.set(1.9,1.85,-4.35);//モデルの位置を調整
       model7.receiveShadow = true;//影を付ける
     
            // 子要素にも影の設定を適用
@@ -306,31 +306,31 @@ scene.add(fill);
 
   // スポットライト光源を作成
 // new THREE.SpotLight(色, 光の強さ, 距離, 照射角, ボケ具合, 減衰率)
-const light1 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
+const light1 = new THREE.SpotLight(0Xffe9b3, 15, 2, Math.PI, 4, 0.5);
 scene.add(light1);
-light1.position.set(0, 3, 4.8);
+light1.position.set(0, 3, 4.7);
 light1.castShadow = false;
 
-const light2 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
+const light2 = new THREE.SpotLight(0Xffe9b3, 15, 2, Math.PI, 4, 0.5);
 scene.add(light2);
-light2.position.set(-3.1, 3, 2.8);
+light2.position.set(-3.1, 3, 2.7);
 light2.castShadow = false;
 
-const light3 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
+const light3 = new THREE.SpotLight(0Xffe9b3, 15, 2, Math.PI, 4, 0.5);
 scene.add(light3);
-light3.position.set(3.1, 3, 2.8);
+light3.position.set(3.1, 3, 2.7);
 light3.castShadow = false;
 
 // light4は冊数的に削除
 
-const light5 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
+const light5 = new THREE.SpotLight(0Xffe9b3, 15, 2, Math.PI, 4, 0.5);
 scene.add(light5);
-light5.position.set(-2.5,3,-4.2);
+light5.position.set(-2.5,3,-4.1);
 light5.castShadow = false;
 
-const light6 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
+const light6 = new THREE.SpotLight(0Xffe9b3, 15, 2, Math.PI, 4, 0.5);
 scene.add(light6);
-light6.position.set(2.5,3,-4.2);
+light6.position.set(2.5,3,-4.1);
 light6.castShadow = false;
 
 //fps設定

@@ -32,16 +32,32 @@ renderer.physicallyCorrectLights = true;          // 物理ベースライティ
 renderer.shadowMap.enabled = true; 
 
 //床の作成
-const floor_geometry = new THREE.PlaneGeometry(20, 20);
+const floor_geometry = new THREE.CylinderGeometry(
+  6.2,    // 上の半径
+  6.2,    // 下の半径（同じ＝円柱）
+  0.3,  // 厚み（高さ）
+  64     // 円のなめらかさ（多いほど丸い）
+);
+
 const floor_material = new THREE.MeshStandardMaterial({
   color: 0x7d7d7d,
   roughness: 1,
   metalness: 0
 });
+
 const plate = new THREE.Mesh(floor_geometry, floor_material);
-plate.rotation.x = -Math.PI / 2;
-plate.position.y = 0.04; // ← これが“段差”
+plate.position.y = 0.04; // 厚みの半分だけ上に
 scene.add(plate);
+
+//浮島の作成
+const floor1 = new THREE.Mesh(floor_geometry, floor_material);
+floor1.position.set(30, 0.04, 10);
+scene.add(floor1);
+
+const floor2 = new THREE.Mesh(floor_geometry, floor_material);
+floor2.position.set(10, 0.04, 25);
+scene.add(floor2);
+
 
 //床に影を落す
 plate.receiveShadow = true;
@@ -268,10 +284,10 @@ function animate() {
   direction.set(0, 0, 0); // 方向を初期化
 
   // 押されたキーに応じて方向を設定
- if (keys['KeyS']) direction.z -= 1;
- if (keys['KeyW']) direction.z += 1;
- if (keys['KeyA']) direction.x -= 1;
- if (keys['KeyD']) direction.x += 1;
+ if (keys['KeyS']) direction.z -= 0.5;
+ if (keys['KeyW']) direction.z += 0.5;
+ if (keys['KeyA']) direction.x -= 0.5;
+ if (keys['KeyD']) direction.x += 0.5;
 
  direction.normalize(); // 斜めでも速さを一定に
 

@@ -30,6 +30,7 @@ renderer.physicallyCorrectLights = true;          // 物理ベースライティ
 
  //影をつける
 renderer.shadowMap.enabled = true; 
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //床の作成
 const floor_geometry = new THREE.CylinderGeometry(
@@ -53,14 +54,31 @@ scene.add(plate);
 const floor1 = new THREE.Mesh(floor_geometry, floor_material);
 floor1.position.set(30, 0.04, 10);
 scene.add(floor1);
+floor1.receiveShadow = true;
+floor1.castShadow = false;
 
 const floor2 = new THREE.Mesh(floor_geometry, floor_material);
 floor2.position.set(10, 0.04, 25);
 scene.add(floor2);
+floor2.receiveShadow = true;
+floor2.castShadow = false;
+
+const floor3 = new THREE.Mesh(floor_geometry, floor_material);
+floor3.position.set(-25, 0.04, -80);
+scene.add(floor3);
+floor3.receiveShadow = true;
+floor3.castShadow = false;
+
+const floor4 = new THREE.Mesh(floor_geometry, floor_material);
+floor4.position.set(-20, 0.04, -20);
+scene.add(floor4);
+floor4.receiveShadow = true;
+floor4.castShadow = false;
 
 
 //床に影を落す
 plate.receiveShadow = true;
+plate.castShadow = false;
 scene.add(plate);
 
 //クロスヘア
@@ -268,12 +286,18 @@ const glbPath7 = "./models/tuki.glb"
   //環境光
   const ambientLight = new THREE.AmbientLight(0xffffff, 1); // 色、強度
   scene.add(ambientLight);
+  ambientLight.castShadow = false;
 
   //ライトの調整
   const sun = new THREE.DirectionalLight(0xffffff, 3.0);
-sun.position.set(5, 10, 7.5);
-sun.castShadow = true;//影を落とす
-scene.add(sun);
+  sun.position.set(5, 10, 7.5);
+  sun.castShadow = true;//影を落とす
+  scene.add(sun);
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.normalBias = 0.02;
+  sun.shadow.bias = -0.0001;
+  sun.shadow.camera.near = 1;
+  sun.shadow.camera.far = 50;
 
 const fill = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
 scene.add(fill);
@@ -285,29 +309,29 @@ scene.add(fill);
 const light1 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light1);
 light1.position.set(0, 3, 4.8);
-light1.castShadow = true;
+light1.castShadow = false;
 
 const light2 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light2);
 light2.position.set(-3.1, 3, 2.8);
-light2.castShadow = true;
+light2.castShadow = false;
 
 const light3 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light3);
 light3.position.set(3.1, 3, 2.8);
-light3.castShadow = true;
+light3.castShadow = false;
 
 // light4は冊数的に削除
 
 const light5 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light5);
 light5.position.set(-2.5,3,-4.2);
-light5.castShadow = true;
+light5.castShadow = false;
 
 const light6 = new THREE.SpotLight(0Xffe9b3, 10, 2, Math.PI, 4, 0.5);
 scene.add(light6);
 light6.position.set(2.5,3,-4.2);
-light6.castShadow = true;
+light6.castShadow = false;
 
 //fps設定
 

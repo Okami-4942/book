@@ -352,6 +352,10 @@ document.addEventListener('keyup', (e) => keys[e.code] = false);
 const direction = new THREE.Vector3();
 const velocity = new THREE.Vector3();
 
+//透明の壁を作成
+const groundRadius = 6.2;
+const groundCenter = new THREE.Vector3(0, 0, 0);
+
  // 毎フレーム（60回/秒）動かす関数
 function animate() {
  requestAnimationFrame(animate);
@@ -372,6 +376,19 @@ function animate() {
  // 実際にカメラを動かす
  controls.moveRight(velocity.x);
  controls.moveForward(velocity.z);
+ // --- 円形制限 ---
+
+ const player = controls.getObject();
+ const playerPos = player.position.clone();
+ playerPos.y = 0;
+
+ const distance = playerPos.distanceTo(groundCenter);
+
+ if (distance > groundRadius - 0.2) { // 少し内側に余裕を持たせる
+   playerPos.normalize().multiplyScalar(groundRadius - 0.2);
+   player.position.x = playerPos.x;
+   player.position.z = playerPos.z;
+ }
  }
 
   renderer.render(scene, camera);
